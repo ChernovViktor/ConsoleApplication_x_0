@@ -7,10 +7,8 @@ using namespace std;
 #define HORIZONTAL_SHIFR "\t\t\t\t\t"
 
 void PrintField(char field[]);
-bool Proverka(char field[], int n);
 void Move(char field[]);
 char Win(char field[]);
-char Nichia(char field[]);
 
 int main()
 {
@@ -19,10 +17,7 @@ int main()
 	char field[n] = {};
 	PrintField(field);
 }
-bool Proverka(char field[],int n)
-{
-	return field[n] ? false : true;
-}
+
 char Win(char field[])
 {
 	if ((field[0] == '0' && field[1] == '0' && field[2] == '0') ||
@@ -66,10 +61,8 @@ void Move(char field[])
 		key = _getch();
 		if (key == 27)return;
 		if (key < '1' || key > '9') cout << "Вы вышли за пределы поля, допустимые клавиши от 1 до 9\n";
-		if (Proverka(field, key - 49)) {}
-		else cout << "Эта клетка уже занята\n";
-
-	} while (key < '1' || key > '9'|| Proverka(field, key - 49) == false);
+		if (field [key-49] != 0) cout << "Эта клетка уже занята\n";
+	} while (key < '1' || key > '9'|| field[key - 49]!=0);
 
 	(ochered % 2 == 0) ? field[key - 49] = 'x' : field[key - 49] = '0';
 
